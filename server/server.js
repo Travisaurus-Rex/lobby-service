@@ -1,5 +1,14 @@
+const express = require("express");
+const http = require("http");
+const app = express();
+const port = 8080;
+
+app.use(express.static("../client"));
+
+const server = http.createServer(app);
+
 const WebSocket = require("ws");
-const socket = new WebSocket.Server({ port: 8080 });
+const socket = new WebSocket.Server({ server });
 
 socket.on("connection", (ws) => {
   ws.on("message", (message) => {
@@ -12,4 +21,8 @@ socket.on("connection", (ws) => {
   });
 
   ws.send("Welcome to the lobby server!");
+});
+
+server.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
