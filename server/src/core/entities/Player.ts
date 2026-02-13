@@ -1,3 +1,5 @@
+import { PlayerData } from "../types/player.types";
+
 export class Player {
   private readonly id: string;
   private username: string;
@@ -71,7 +73,7 @@ export class Player {
     return this.lastSeenAt;
   }
 
-  toJSON(): Record<string, any> {
+  toJSON(): PlayerData {
     return {
       id: this.id,
       username: this.username,
@@ -81,7 +83,7 @@ export class Player {
     };
   }
 
-  static fromJSON(data: any): Player {
+  static fromJSON(data: PlayerData): Player {
     const player = new Player(data.id, data.username, data.isGuest);
 
     if (data.connectedAt) {
