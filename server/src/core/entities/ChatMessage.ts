@@ -1,3 +1,5 @@
+import { ChatMessageData } from "../types/chat.types";
+
 export class ChatMessage {
   private readonly id: string;
   private readonly lobbyId: string;
@@ -68,7 +70,7 @@ export class ChatMessage {
     return this.timestamp;
   }
 
-  toJSON(): Record<string, any> {
+  toJSON(): ChatMessageData {
     return {
       id: this.id,
       lobbyId: this.lobbyId,
@@ -79,7 +81,7 @@ export class ChatMessage {
     };
   }
 
-  static fromJSON(data: any): ChatMessage {
+  static fromJSON(data: ChatMessageData): ChatMessage {
     const message = new ChatMessage(
       data.id,
       data.lobbyId,
