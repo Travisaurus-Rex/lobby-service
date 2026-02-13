@@ -5,11 +5,7 @@
 
 import { WebSocketServer as WSServer, WebSocket } from "ws";
 import { IncomingMessage } from "http";
-
-export interface WebSocketMessage {
-  type: string;
-  data?: any;
-}
+import { WebSocketMessage } from "../../core/types/events.types";
 
 export class WebSocketServer {
   private wss: WSServer;
